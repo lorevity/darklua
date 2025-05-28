@@ -35,6 +35,15 @@ impl<'a, 'b, 'c> RequirePathLocator<'a, 'b, 'c> {
             source.display()
         );
 
+        if path.starts_with(Path::new("@self")) {
+            let components: Vec<_> = path.components().skip(1).collect();
+            let mut new_path = PathBuf::from(".");
+            for component in components {
+                new_path.push(component);
+            }
+            path = new_path;
+        }
+
         if is_require_relative(&path) {
             let mut new_path = source.to_path_buf();
             new_path.pop();
@@ -66,7 +75,6 @@ impl<'a, 'b, 'c> RequirePathLocator<'a, 'b, 'c> {
                 path = extra_module_location;
             }
         }
-        // else: the path is absolute so darklua should attempt to require it directly
 
         let normalized_path = utils::normalize_path_with_current_dir(&path);
         for potential_path in path_iterator::find_require_paths(
@@ -94,7 +102,7 @@ impl<'a, 'b, 'c> RequirePathLocator<'a, 'b, 'c> {
 }
 
 // the `is_relative` method from std::path::Path is not what darklua needs
-// to consider a require relative, which are paths that starts with `.` or `..`
+// to consider a require relative, which are paths that starts with `.` or `..` or `@self`
 fn is_require_relative(path: &Path) -> bool {
     path.starts_with(Path::new(".")) || path.starts_with(Path::new("..")) || path.starts_with(Path::new("@self"))
 }
