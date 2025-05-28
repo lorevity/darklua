@@ -102,7 +102,7 @@ impl<'a, 'b, 'c> RequirePathLocator<'a, 'b, 'c> {
 }
 
 // the `is_relative` method from std::path::Path is not what darklua needs
-// to consider a require relative, which are paths that starts with `.` or `..` or `@self`
+// to consider a require relative, which are paths that starts with `.` `..` or `@self`
 fn is_require_relative(path: &Path) -> bool {
     path.starts_with(Path::new(".")) || path.starts_with(Path::new("..")) || path.starts_with(Path::new("@self"))
 }
