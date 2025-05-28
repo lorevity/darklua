@@ -9,30 +9,16 @@
 
 Transform Lua 5.1 and Roblox Lua scripts using rules.
 
-# [Documentation](https://darklua.com/docs)
+# Documentation
 
 Visit https://darklua.com/docs to learn how to use darklua.
 
-# [Try It!](https://darklua.com/try-it)
+# Installation
 
-You can try darklua directly into your browser! Check out https://darklua.com/try-it.
-
-# [Installation](https://darklua.com/docs/installation/)
-
-## [Foreman](https://github.com/Roblox/foreman)
-
-If you are already using Foreman, then installing darklua is as simple as adding this line in the foreman.toml file:
-
-```toml
-darklua = { github = "seaofvoices/darklua", version = "=0.13.1" }
-```
-
-## [Aftman](https://github.com/LPGhatguy/aftman)
-
-With Aftman, run:
+If you are using [Aftman](https://github.com/LPGhatguy/aftman), then run this command in the terminal:
 
 ```
-aftman add seaofvoices/darklua
+aftman add lorevity/darklua
 ```
 
 # License
